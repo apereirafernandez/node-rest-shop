@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
-const userRoutes = require("./api/routes/user");  
+const userRoutes = require("./api/routes/user");
 
 const dbUrl =
   "mongodb+srv://apereirafernandez:" +
@@ -16,7 +16,7 @@ const dbUrl =
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(morgan("dev"));
-app.use('/uploads', express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -50,8 +50,8 @@ app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
-      message: error.message
-    }
+      message: error.message,
+    },
   });
 });
 
@@ -59,7 +59,7 @@ process
   .on("unhandledRejection", (reason, promise) => {
     console.log(reason, "unnhanled Rejection at Promise", promise);
   })
-  .on("uncaughtException", error => {
+  .on("uncaughtException", (error) => {
     console.log(error, "Uncought Exception thrown");
     process.exit(1);
   });
